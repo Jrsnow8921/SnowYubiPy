@@ -13,7 +13,7 @@ class SnowYubi:
     try:
       dev = usb.core.find(find_all=True)
       x = True if any(self.dv in s for s in [self.dv for cfg in dev if self.dv in usb.util.get_string(cfg, cfg.iProduct)]) else False
-    except:
+    except ValueError:
       raise
     return x
 
@@ -36,6 +36,7 @@ class SnowYubi:
       while True:
         self.plugin()
         self.unplug()
+        time.sleep(2)
     except KeyboardInterrupt:
       sys.exit(0)
 
