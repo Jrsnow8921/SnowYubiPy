@@ -12,10 +12,10 @@ class SnowYubi:
   def findYubi(self):
     try:
       dev = usb.core.find(find_all=True)
-      x = True if any(self.dv in s for s in [self.dv for cfg in dev if self.dv in usb.util.get_string(cfg, cfg.iProduct)]) else False
     except ValueError:
       raise
-    return x
+    return True if any(self.dv in s for s in [self.dv for cfg in dev if self.dv in usb.util.get_string(cfg, cfg.iProduct)]) else False
+
 
   def plugin(self):
     while True:
