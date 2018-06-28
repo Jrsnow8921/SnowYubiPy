@@ -10,7 +10,6 @@ class SnowYubi:
     self.dv = dv
 
   def findYubi(self):
-    x = ''
     try:
       dev = usb.core.find(find_all=True)
       x = True if any(self.dv in s for s in [self.dv for cfg in dev if self.dv in usb.util.get_string(cfg, cfg.iProduct)]) else False
